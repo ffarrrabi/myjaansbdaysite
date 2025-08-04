@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Happy Birthday Marzia</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat&display=swap');
+
+    body, html {
+      margin: 0; padding: 0; height: 100%; overflow-x: hidden;
+      background: linear-gradient(135deg, #fcefee, #ffe6f1);
+      font-family: 'Montserrat', sans-serif;
+      color: #7a1f5c;
+      user-select: none;
+    }
+    .center-screen {
+      height: 100vh;
+      display: flex; flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: #fcefee;
+      text-align: center;
+      padding: 0 20px;
+    }
+    h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 4rem;
+      margin-bottom: 0.2em;
+      color: #c72c6c;
+      text-shadow: 0 0 10px #ff86b0;
+      animation: pulse 3s infinite alternate;
+    }
+    @keyframes pulse {
+      0% { text-shadow: 0 0 5px #ff86b0; }
+      100% { text-shadow: 0 0 20px #ff1f76; }
+    }
+    h3 {
+      font-weight: 400;
+      font-size: 1.5rem;
+      color: #ad3c7d;
+      margin-top: 0;
+      margin-bottom: 2rem;
+    }
+    button {
+      background: #ff2b8e;
+      color: white;
+      border: none;
+      padding: 15px 40px;
+      font-size: 1.3rem;
+      border-radius: 40px;
+      cursor: pointer;
+      box-shadow: 0 0 10px #ff2b8e;
+      transition: 0.3s ease;
+      user-select: none;
+      margin-top: 20px;
+    }
+    button:hover {
+      background: #e02075;
+      box-shadow: 0 0 20px #ff2b8e;
+    }
+
+    #heart-container {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    #love-letter {
+      max-width: 650px;
+      background: #fff0f6;
+      margin: 0 auto 4rem;
+      border-radius: 20px;
+      box-shadow: 0 0 20px #ff2b8e66;
+      padding: 30px 40px;
+      font-size: 1.2rem;
+      line-height: 1.6;
+      font-style: italic;
+      color: #7a1f5c;
+      white-space: pre-line;
+      text-align: center;
+    }
+
+    #balloons {
+      position: fixed;
+      bottom: -150px;
+      width: 100%;
+      height: 200px;
+      pointer-events: none;
+      z-index: 5;
+    }
+    .balloon {
+      position: absolute;
+      bottom: 0;
+      width: 40px;
+      height: 60px;
+      background: #ff2b8e;
+      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+      opacity: 0.8;
+      animation: floatUp 7s linear infinite;
+      box-shadow: inset -3px -3px 8px rgba(255, 255, 255, 0.4);
+    }
+    .balloon::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      width: 2px;
+      height: 10px;
+      background: #c72c6c;
+      transform: translateX(-50%);
+    }
+    @keyframes floatUp {
+      0% { transform: translateY(0) translateX(0); opacity: 0.8; }
+      100% { transform: translateY(-300px) translateX(50px); opacity: 0; }
+    }
+
+    @media (max-width: 700px) {
+      h1 { font-size: 3rem; }
+      #love-letter { font-size: 1rem; padding: 20px 25px; }
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 0 15px rgba(255, 105, 180, 0.3);
+      margin-bottom: 20px;
+      padding: 20px 25px;
+      transition: 0.3s ease;
+    }
+
+    .card:hover {
+      transform: scale(1.02);
+      box-shadow: 0 0 25px rgba(255, 105, 180, 0.5);
+    }
+
+    .card h3 {
+      margin-top: 0;
+      color: #ad3c7d;
+    }
+
+    .wish-text {
+      white-space: pre-line;
+      line-height: 1.6;
+    }
+
+    /* Slideshow Styles */
+    .slideshow-container {
+      max-width: 800px;
+      margin: 40px auto;
+      position: relative;
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(255, 105, 180, 0.3);
+      overflow: hidden;
+      background: #fff;
+      text-align: center;
+      padding: 30px;
+    }
+    .slide img {
+      max-width: 100%;
+      border-radius: 15px;
+    }
+    .caption {
+      margin-top: 20px;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: #7a1f5c;
+      white-space: pre-line;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="heart-container"></div>
+
+  <!-- Page 1: Intro Screen -->
+  <div id="introScreen" class="center-screen">
+    <h1>Happy Birthday Marzia 💖</h1>
+    <h3>You are the most beautiful part of my life.</h3>
+    <button id="openBtn">Open Your Surprise</button>
+  </div>
+
+  <!-- Page 2: Love Letter -->
+  <div id="loveLetterPage" class="center-screen" style="display:none; flex-direction: column; padding: 40px 20px;">
+    <div id="love-letter">
+      Dear Marzia,<br><br>
+      You are my sunshine on the cloudiest days,<br>
+      my calm in every storm,<br>
+      and the light that guides my path.<br><br>
+      I am grateful for every moment we share,<br>
+      and I love you more than words can say.<br><br>
+      Happy birthday, my love — forever and always.<br><br>
+      Yours,<br>
+      Farabi 💖
+    </div>
+    <button id="toSlideshowBtn">Next</button>
+  </div>
+
+  <!-- Page 3: Slideshow -->
+  <div id="slideshowPage" style="display:none; padding: 20px;">
+    <div class="slideshow-container" id="slideshow"></div>
+    <div style="text-align:center; margin-top: 20px;">
+      <button id="prevSlideBtn">Previous</button>
+      <button id="nextSlideBtn">Next</button>
+    </div>
+    <div style="text-align:center; margin-top: 20px;">
+      <button id="toWishesBtn">Next</button>
+    </div>
+  </div>
+
+  <!-- Page 4: Wishes -->
+  <div id="wishesPage" style="display:none; padding: 40px 20px; max-width: 900px; margin: 0 auto;">
+    <h1 style="text-align:center; color: #c72c6c; font-family: 'Great Vibes', cursive;">🌸 Birthday Wishes for Marzia 🌸</h1>
+
+ 
+    <div class="card"><h3>From Farabi</h3><div class="wish-text">
+🌸 Happy Birthday, My Love 🌸
+
+To my sweetest Marzia,
+Happy Birthday to the girl who makes my world brighter just by existing. From the moment you walked into my life, everything changed. You brought light where there was darkness, calm where there was chaos, and love where there was loneliness. I still can’t believe someone as beautiful, kind, and amazing as you chose me. I’m the luckiest person alive just to call you mine.
+
+I know I’ve made mistakes. I haven’t always been perfect. But through it all, you stayed. You believed in me. You loved me. And that love means everything. Every little smile of yours, every word, every moment with you, it’s carved into my heart like a treasure I’ll hold forever.
+
+On your special day, I just want one thing to make you feel how deeply loved you are. I want to celebrate all your birthdays with you. And all mine too. Side by side. Forever. I want to be there when you laugh, when you cry, when you dream, and when you wake up each day. Because life with you is the only life I want.
+
+You are my home. My favorite hello. My hardest goodbye. My wish every time I see 11:11. And if I could give you the world, I would. But for now, I’m giving you all of me ,my heart, my soul, my future.
+
+Happy Birthday, baby. May this year be as magical as your smile and as warm as your hugs. I love you, more than you’ll ever know.
+
+Forever yours,
+Farabi 💖
+    </div></div>
+    
+     <div class="card"><h3>From Chaya</h3><div class="wish-text">
+Happy birthday babygirl😩! I wish we could meet, but sadly we can’t. Still, just know that I miss you like crazy and I really miss our “therapy” sessions too. I’m genuinely so thankful to have a sister like you — someone who always has my back and supports me no matter what. I hope you achieve everything we used to dream about during those late-night calls, and I truly just want to see you happy. I love you so muchhh (onk jalas o bhai tui smh).
+Anyways, HAPPY BIRTHDAYYY BURI HOYE JACCHISH ❤️😭
+    </div></div>
+
+    <div class="card"><h3>From Chhonya Apu</h3><div class="wish-text">
+Happy birthday Marzia. Have a blast tomorrow❤️❤️❤️
+    </div></div>
+
+    <div class="card"><h3>From Neer</h3><div class="wish-text">
+Happy Birthday cousin! May your day be filled with love, laughter, and all the magic you deserve. 🌸🎂✨
+    </div></div>
+
+    <div class="card"><h3>From Nabila</h3><div class="wish-text">
+Happy birthday dstt!!<br>
+Din din buri hoye jaccho....we have a lot of memories together but I will never forget the beginning (jor kore pepe khaoano moment)..slowly u turned into my world ...we have shared a really special bond...I can't pray for us to admit in the same uni cuz eta hoile amdr dream bhege jabe...but I really want to be ur frd forever in sha Allah<br>
+So be my pretty angel forever 💛<br>
+It's hard to say but I'm gonna miss u so much bhai(school clg a amr bench partner tumi chila)<br>
+Onk kichu koraisish jor kore and I'm glad for that...u will be my favourite forever ❤️ I hate u sooooooooooooooooooo much
+    </div></div>
+
+    <div class="card"><h3>From Raima</h3><div class="wish-text">
+Happy birthday Marzia Channnn🩷🩷💖💖You are the sweetest and dearest😙😙and obviously one of the best thing that happened with me in ACC 🥺❤️<br>
+I love you 🫶🫶……valo Thako shukhe Thako amr kotha mone rakho❤️❤️❤️May ur all dreams come true (Fake birthday r treat ta paona ase akhono 🥱🥱)<br>
+Exm sheshe definitely meet korbo
+    </div></div>
+
+    <div class="card"><h3>From Tanvir</h3><div class="wish-text">
+Happy Birthday dst.I hope that this birthday will be a very special birthday for you.As as you got a new life Partner in your life. I hope that you and my bestfriend, will lead a very happy life together.I hope that all your good cherishes come true.Treat ta diye dio bondhu Happy birthday 🎂
+    </div></div>
+
+    <div class="card"><h3>From Anas</h3><div class="wish-text">
+Marzia, MANY MANY HAPPY RETURNS OF THE DAY gorilla. Emnei eibhabe boro hoite thak (side wise emneo boro hocchos) age wise boro hoite thak and at least pls mature ho. Thank u for coming to this world and giving me the brother that I needed in the form of a sister. Bhalo moto Hsc de, make aunty uncle proud (kharap hoile tore ami marum mone rakhis). Hopefully Hsc r por ekdin dekha hobe shobair shate and amke kindly treat ta diye dis 🥰🥰🥰
+    </div></div>
+
+    <div class="card"><h3>From Prithwi</h3><div class="wish-text">
+Happy birthday Marzia. Cutest HSC benchmate ever. I hope u get everything that you want. Love youu💜
+    </div></div>
+
+    <div class="card"><h3>From Reetaj</h3><div class="wish-text">
+Happy birthday, Marzia🫶🏻
+    </div></div>
+
+    <div class="card"><h3>From Moontaha</h3><div class="wish-text">
+Happy birthday marzia. Really happy to be with you till now. Wishing you a day full of love, laughter, and great memories. So lucky to have you as a childhood friend, thank you for all the good times. Hope this year brings you lots of happiness! Shamne admission hope you ace it. Love you🫶
+    </div></div>
+
+    <div class="card"><h3>From Talha</h3><div class="wish-text">
+Happy birthday Marzia, wishing you all the goodness. Hope you get all the good results that you strive for and enjoy the day.
+    </div></div>
+
+    <div class="card"><h3>From Ahnaf</h3><div class="wish-text">
+Marzia best of luck for the future and keep winning. Hopefully the right thing will come at your path.
+    </div></div>
+
+    <div class="card"><h3>From Sumaiya</h3><div class="wish-text">
+Happy Birthday, MARZIAAAAA!<br>
+I hope your day is as awesome as you are. You deserve all the good things life has to offer—laughter, joy, and some well-deserved fun! I’m really glad to have you as a friend and to have shared moments, laughs, and even the quiet times where just being there mattered. It’s been great knowing you and I’m thankful our paths crossed. May this year bring you new opportunities, exciting adventures, and plenty of reasons to smile. Keep being yourself, never stop chasing your dreams, and remember you’re truly appreciated. Have a fantastic birthday and an amazing year ahead!
+    </div></div>
+
+    <div class="card"><h3>From Shahta</h3><div class="wish-text">
+Happy Birthday Mama!<br>
+Never really figured out how we started our friendship but we're here now vibing all the wayy. Can't thank you enough for listening to all my stupid rants and shi xD. Stay blessed, happy and cheerful bondhu. And biyeta asap kore felo, holud e nachar jonno ready asi amra 🎀
+    </div></div>
+
+    <div class="card"><h3>From Lamisa</h3><div class="wish-text">
+Happy Birthday Marzia🥳😘<br><br>
+When i first came to Adamjee never thought i could make friends again after those friendship dumps (ekdin bolbone) But i was wrong. I got such amazing friends and you r one of them. You r such a vibe match😭❤️ I hope we will always be this close and kokhono problem hole shamnashamni bolbi, amio jemon bolbo. Cholo ekdin girls day out korbo. Always be happy. I love ur smile. Love you loads BBE. TATA🫶
+    </div></div>
+  </div>
+
+  <div id="balloons"></div>
+
+  <script>
+    // Hearts animation
+    const heartContainer = document.getElementById('heart-container');
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.textContent = '❤️';
+      heart.style.position = 'fixed';
+      heart.style.left = (Math.random() * window.innerWidth) + 'px';
+      heart.style.top = window.innerHeight + 20 + 'px';
+      heart.style.fontSize = (12 + Math.random() * 20) + 'px';
+      heart.style.opacity = Math.random();
+      heart.style.pointerEvents = 'none';
+      heart.style.userSelect = 'none';
+      heart.style.transition = 'transform 3s linear, opacity 3s linear';
+      heartContainer.appendChild(heart);
+      setTimeout(() => {
+        heart.style.transform = 'translateY(-120vh)';
+        heart.style.opacity = 0;
+      }, 50);
+      setTimeout(() => heart.remove(), 3050);
+    }
+    setInterval(createHeart, 300);
+
+    // Balloons animation
+    const balloonsContainer = document.getElementById('balloons');
+    function createBalloon() {
+      const balloon = document.createElement('div');
+      balloon.className = 'balloon';
+      balloon.style.left = Math.random() * window.innerWidth + 'px';
+      balloon.style.animationDuration = (5 + Math.random() * 5) + 's';
+      balloon.style.opacity = 0.7 + Math.random() * 0.3;
+      balloonsContainer.appendChild(balloon);
+      setTimeout(() => balloon.remove(), 7000);
+    }
+    setInterval(createBalloon, 1000);
+
+    // Page references
+    const introScreen = document.getElementById('introScreen');
+    const loveLetterPage = document.getElementById('loveLetterPage');
+    const slideshowPage = document.getElementById('slideshowPage');
+    const wishesPage = document.getElementById('wishesPage');
+
+    // Buttons
+    const openBtn = document.getElementById('openBtn');
+    const toSlideshowBtn = document.getElementById('toSlideshowBtn');
+    const toWishesBtn = document.getElementById('toWishesBtn');
+
+    openBtn.onclick = () => {
+      introScreen.style.display = 'none';
+      loveLetterPage.style.display = 'flex';
+
+      // Start music on loveLetterPage open
+      const music = document.createElement('iframe');
+      music.src = "https://www.youtube.com/embed/w-FkV0EM_CU?autoplay=1&loop=1&playlist=w-FkV0EM_CU&start=62&controls=0&mute=0&disablekb=1&modestbranding=1&iv_load_policy=3";
+      music.style.position = 'fixed';
+      music.style.left = '-1000px';
+      music.style.width = '1px';
+      music.style.height = '1px';
+      music.style.opacity = '0';
+      music.setAttribute('allow', 'autoplay');
+      music.setAttribute('frameborder', '0');
+      document.body.appendChild(music);
+    };
+
+    toSlideshowBtn.onclick = () => {
+      loveLetterPage.style.display = 'none';
+      slideshowPage.style.display = 'block';
+    };
+
+    toWishesBtn.onclick = () => {
+      slideshowPage.style.display = 'none';
+      wishesPage.style.display = 'block';
+    };
+
+    // Slideshow logic
+    const images = [
+      {
+    src: "https://i.ibb.co/675Qrz5m/IMG-3345.jpg",
+    text: `You look like a dream standing under the sun.
+Your smile is the reason my heart beats faster.
+The way your eyes sparkle makes me believe in magic.
+Every time I see this photo I fall in love with you all over again.
+You are my favorite view in the world.
+This picture captures the softness in your soul.
+I could stare at you forever and never get tired.
+You make the background jealous with your beauty.
+Your presence in this frame lights up everything.
+I feel lucky just to know you.`
+  },
+  {
+    src: "https://i.ibb.co/tPTS9NXz/IMG-3351.jpg",
+    text: `Your elegance shines like the stars above.
+This moment feels frozen in time because of your beauty.
+You are more breathtaking than the scenery behind you.
+I love the confidence in your expression.
+Everything about you is effortlessly perfect.
+Your style is just as gorgeous as your heart.
+I want to live in this moment with you forever.
+Your grace is unmatched and it shows in this photo.
+This is what angels would look like if they walked among us.
+You are my eternal muse.`
+  },
+  {
+    src: "https://i.ibb.co/GvkyJtL8/IMG-3350.jpg",
+    text: `Your eyes tell a story I want to read forever.
+Every curve of your smile writes poetry in my heart.
+You are the sunshine I never want to lose.
+The way you tilt your head makes me weak.
+This picture makes my heart ache in the best way.
+Your joy is contagious even through a photo.
+Everything about you makes me believe in love.
+The light follows you because it loves your glow.
+I want to frame this moment in my soul.
+You are love in its most beautiful form.`
+  },
+  {
+    src: "https://i.ibb.co/7d2ScDx6/IMG-3269.jpg",
+    text: `I wish I could freeze this moment forever.
+Your beauty here is absolutely timeless.
+You shine brighter than the light behind you.
+Every detail of your face feels like a masterpiece.
+I want to wrap this memory and keep it safe.
+Your presence calms every chaos in my mind.
+There is something angelic in the way you smile.
+I can hear my heart whisper your name looking at this.
+You make every photo a piece of art.
+I love you more than words could ever say.`
+  },
+  {
+    src: "https://i.ibb.co/21nbXZkP/93324809-0dbe-48ea-afbe-09ea3eaaa141.jpg",
+    text: `This candid moment captures your pure soul.
+Your laughter is the music of my life.
+You look like the happiest girl on Earth here.
+This picture brings warmth to my heart.
+Your innocence shines through your eyes.
+I want to hold you close and protect that smile.
+Every time I see you happy I feel complete.
+You are the definition of adorable.
+This is how I want to remember you always.
+You make life a little softer and sweeter.`
+  },
+  {
+    src: "https://i.ibb.co/RkXhhL8R/441d68f0-f22a-4874-b041-1874ec6e3e87.jpg",
+    text: `You glow with a light that brightens my darkest days.
+The softness in your eyes comforts my soul.
+Every detail in this photo shows your beautiful heart.
+I want to be lost in this moment with you forever.
+Your smile here is like the sweetest melody.
+This picture captures the essence of your kindness.
+I feel peace just looking at your gentle face.
+You make the world a better place by just being you.
+I wish I could hold this memory close forever.
+You are the meaning of pure happiness to me.`
+  },
+  {
+    src: "https://i.ibb.co/Dgzk0Pf4/IMG-2008.jpg",
+    text: `The way your hair dances with the breeze is magical.
+Your eyes sparkle with secrets only I want to know.
+This photo feels like a soft whisper of love.
+I could get lost in the depth of your gaze.
+Your smile lights up everything around you.
+I want to freeze this moment and keep it forever.
+You look so effortlessly beautiful here.
+Every inch of this picture is a treasure to me.
+Being with you feels like a dream I never want to end.
+You are the heart of all my happiness.`
+  },
+  {
+    src: "https://i.ibb.co/sd1zzJnk/IMG-1696.jpg",
+    text: `You are the calm in my chaos.
+Your laughter is the sweetest sound I know.
+This photo captures your joyful spirit perfectly.
+I want to keep this happiness forever.
+Your eyes tell stories that I want to read endlessly.
+Every smile you give brightens my world.
+You are my forever favorite sight.
+This moment is etched in my heart.
+I feel so lucky to have you in my life.
+You make every day worth living.`
+  },
+  {
+    src: "https://i.ibb.co/9HSWnMG0/IMG-1690.jpg",
+    text: `Your beauty is timeless and enchanting.
+This picture feels like a glimpse into heaven.
+Your gentle smile soothes my heart instantly.
+I want to stay in this moment with you forever.
+You shine brighter than any star above.
+Every glance from you makes my soul flutter.
+I love the peace your presence brings me.
+You are the muse of all my dreams.
+This photo shows your incredible grace.
+Being with you feels like pure magic.`
+  },
+  {
+    src: "https://i.ibb.co/8hR61rB/IMG-0697.jpg",
+    text: `You have a smile that melts my heart every time.
+This moment is filled with pure joy and love.
+Your eyes sparkle brighter than diamonds here.
+I want to hold you close and never let go.
+This photo captures your beautiful soul perfectly.
+I feel so blessed to see your happiness.
+You are the light in my life’s darkest moments.
+Every laugh you share makes me fall deeper.
+This is one of my favorite memories with you.
+I love you more than words could ever express.`
+  },
+  {
+    src: "https://i.ibb.co/pjzhwbwB/61905f3e-0c31-4cc9-857b-ba5388a623f7.jpg",
+    text: `Your smile is like sunshine after a rainy day.
+This photo captures your sweet innocence perfectly.
+I want to keep this happiness in my heart forever.
+You radiate warmth and kindness effortlessly.
+Every glance you give makes the world brighter.
+I feel my heart soar when I look at you.
+You make every moment more special just by being you.
+This picture is a treasure I will always cherish.
+Your beauty shines from the inside out.
+I am so lucky to have you in my life.`
+  },
+  {
+    src: "https://i.ibb.co/62x4Gzm/7622f95d-5dc0-4ce1-b092-d98951b98f6c.jpg",
+    text: `Your eyes sparkle like stars in the night.
+This moment captures your pure joy perfectly.
+I want to hold this memory close forever.
+You light up every room you walk into.
+Your smile brightens even the darkest days.
+I feel my heart beat faster seeing you happy.
+You are my forever source of happiness.
+This photo shows your beautiful spirit.
+I love the way you make everything better.
+You are the reason I smile every day.`
+  },
+  {
+    src: "https://i.ibb.co/p8jryDw/83879262-148b-4b4a-a135-9f817a22dcf3.jpg",
+    text: `You look like a fairy tale come to life.
+This moment feels magical and perfect.
+Your smile is the light of my world.
+Every detail of this photo is beautiful.
+I want to stay lost in your eyes forever.
+You bring so much love into my life.
+This picture captures your gentle soul.
+I feel complete just seeing you happy.
+You are the dream I never want to wake from.
+I love you more than words can say.`
+  },
+  {
+    src: "https://i.ibb.co/B5KsbBfQ/IMG-8429.jpg",
+    text: `Your beauty is radiant and pure.
+This photo captures your kind heart perfectly.
+I want to keep this moment safe in my soul.
+Your smile brightens all my darkest days.
+You are the reason I believe in love.
+Every glance you give makes me weak.
+This picture is a treasure I cherish.
+You fill my world with endless joy.
+I feel so lucky just to know you.
+You are my forever happiness.`
+  },
+  {
+    src: "https://i.ibb.co/F42DcfXz/IMG-8376.jpg",
+    text: `Your eyes hold the stars and the moon.
+This moment captures your timeless grace.
+I want to keep this photo forever close.
+Your smile is the sweetest melody.
+You make my heart sing every day.
+This picture shows your beautiful soul.
+I feel complete when I see you happy.
+You are the dream I never want to end.
+Every moment with you is magic.
+I love you more than anything.`
+  },
+  {
+    src: "https://i.ibb.co/vxrQCvJj/IMG-7811.jpg",
+    text: `You shine brighter than the morning sun.
+This photo shows your incredible strength.
+I want to keep this moment in my heart.
+Your smile warms my soul completely.
+You make every day a better day.
+This picture captures your radiant joy.
+I feel so blessed to have you near.
+You are the love I cherish most.
+Every glance from you fills me with hope.
+I love you forever and always.`
+  },
+  {
+    src: "https://i.ibb.co/1ftHmwFm/d597d434-3b5b-46c6-b5b6-028989b633f7.jpg",
+    text: `This photo feels like a gentle hug from you.
+Your smile lights up my entire world.
+I want to keep this happiness forever.
+You bring so much love into my life.
+Every moment with you is precious.
+You make all my dreams come true.
+This picture captures your beautiful soul.
+I feel complete when I see you smile.
+You are my forever and always.
+I love you more every day.`
+  },
+  {
+    src: "https://i.ibb.co/sdTKrbCR/IMG-4703.jpg",
+    text: `Your beauty is beyond words in this photo.
+This moment captures your purest joy.
+I want to hold this memory close always.
+Your smile makes the world a better place.
+You are the light in my darkest times.
+Every glance you give warms my heart.
+This picture shows your incredible soul.
+I feel so lucky to have you in my life.
+You are the love I cherish forever.
+I love you more than words can express.`
+  }
+
+    ];
+
+    let currentIndex = 0;
+    const slideshow = document.getElementById('slideshow');
+    const prevSlideBtn = document.getElementById('prevSlideBtn');
+    const nextSlideBtn = document.getElementById('nextSlideBtn');
+
+    function renderSlide(index) {
+      slideshow.innerHTML = '';
+      const slide = document.createElement('div');
+      slide.className = 'slide active';
+
+      const img = document.createElement('img');
+      img.src = images[index].src;
+      img.alt = "Marzia photo";
+
+      const caption = document.createElement('div');
+      caption.className = 'caption';
+      caption.textContent = images[index].text;
+
+      slide.appendChild(img);
+      slide.appendChild(caption);
+      slideshow.appendChild(slide);
+    }
+
+    function changeSlide(n) {
+      currentIndex += n;
+      if (currentIndex >= images.length) currentIndex = 0;
+      if (currentIndex < 0) currentIndex = images.length - 1;
+      renderSlide(currentIndex);
+    }
+
+    prevSlideBtn.onclick = () => changeSlide(-1);
+    nextSlideBtn.onclick = () => changeSlide(1);
+
+    // Initial render
+    renderSlide(currentIndex);
+  </script>
+
+</body>
+</html>
